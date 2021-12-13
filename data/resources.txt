@@ -1,0 +1,5 @@
+https://www.kaggle.com/justinas/nba-players-data
+https://github.com/erikgregorywebb/datasets/blob/master/nba-salaries.csv
+https://data.world/gmoney/nba-team-records-by-year/workspace/file?filename=Historical+NBA+Performance.xlsx
+https://www.landofbasketball.com/teams/records_oklahoma_city_thunder.htm
+https://www.kaggle.com/jacobbaruch/basketball-players-stats-per-season-49-leagues

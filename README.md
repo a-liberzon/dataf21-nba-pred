@@ -93,4 +93,5 @@ Top undervalued players (adjusted):
 
 ## Conclusion
 
-Although the model used was not perfect it proved to be a helpful tool in measuring the value of a player their performance in a particular season
+Although the model used was not perfect, it proved to be a helpful tool in measuring the value of a player their performance in a particular season.
+It showed that overvalued players were aging superstars whose numbers have gone down after they have secured a high paying contract while undervalued players were either players past their prime hoping to redeem themselves or players playing on the final year of their contract hoping to secure a high contract.

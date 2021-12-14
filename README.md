@@ -17,13 +17,13 @@ https://data.world/gmoney/nba-team-records-by-year/workspace/file?filename=Histo
 Used to manually fill in team records from (2017 - 2020)<br> 
 https://www.landofbasketball.com/nba_teams.htm
 
-Basketball Players Stats per Season - 49 Leagues<br>
+Basketball Players Stats per Season - 49 Leagues (used NBA)<br>
 https://www.kaggle.com/jacobbaruch/basketball-players-stats-per-season-49-leagues
 
 ### Data
 Based on the datasets I could find, I decided to use data between 2000 and 2020. I figured the last 20 years was good sample size since it had 2 generations of players, marked the end of the Chicago Bulls dynasty, and included all 30 teams for the most part (Charlotte Bobcats were added in 2004).
 
-All of the data listed above was cleaned up and then imported into a Dataframe. Players who did not have their salary information were removed along with players who did not play for more than 10 games a season (teams can offer players 10-day contracts to assess their skill). Players that were traded mid-season were listed under their most recent team that year. For consistency, all data used the latter year to represent the seaon (ex: 2003-04 would be 2004).
+All the data listed above was cleaned up and then imported into a Dataframe. Players who did not have their salary information were removed along with players who did not play for more than 10 games a season (teams can offer players 10-day contracts to assess their skill). Players that were traded mid-season were listed under their most recent team that year. For consistency, all data used the latter year to represent the seaon (ex: 2003-04 would be 2004).
 
 ![](screenshots/cleaned-dataset.png)
 
@@ -59,13 +59,15 @@ Earlier I tried using a dataset that had statistical features while this one foc
 ## Training/Fitting Model
 Instead of predicting the player salary, I decided to predict the salary cap percentage of their salary. This eliminated the need to adjust for inflation.
 
-I decided to go with a Random Forest Regression because it had performed slightly better than Linear Regression. Note that one glaring problem with the result is the residual bias (seen in the 2nd graph)
+I decided to go with a Random Forest Regression because it had performed slightly better than Linear Regression. 
+Note that one glaring problem with the result is the residual bias (seen in the 2nd graph)
 
 ![](screenshots/actual-VS-pred.png)
 
 ![](screenshots/residual-bias.png)
 
-I added the prediction back to the dataframe and the residual (actual - prediction). This was used to determine if a player was overvalued (positive) or undervalued (negative) that season
+I added the prediction back to the dataframe and the residual (actual - prediction). 
+This was used to determine if a player was overvalued (positive) or undervalued (negative) that season
 
 Top overvalued players:
 ![](screenshots/overvalued-1.png)
@@ -77,7 +79,8 @@ Top undervalued players:
 
 ![](screenshots/undrval-a-1.png)
 
-The results show that the most overvalued players are superstars past their prime. The most undervalued players are emerging superstars in the end of their rookie contracts
+The results show that the most overvalued players are superstars past their prime. 
+The most undervalued players are emerging superstars in the end of their rookie contracts
 
 If we include a players age as a feature in our model (despite it being more categorical), the results focus less on rookies and more on veteran players that performing well on minimum contracts
 
@@ -93,5 +96,26 @@ Top undervalued players (adjusted):
 
 ## Conclusion
 
-Although the model used was not perfect, it proved to be a helpful tool in measuring the value of a player their performance in a particular season.
-It showed that overvalued players were aging superstars whose numbers have gone down after they have secured a high paying contract while undervalued players were either players past their prime hoping to redeem themselves or players playing on the final year of their contract hoping to secure a high contract.
+Given the nature of sports and sports contracts getting an accurate prediction is difficult.
+Teams pay players based on the players' performance in previous seasons and contracts can vary in years.
+Players don't get paid at the end of the season based on their stats.
+
+However, the model proved to be a helpful tool in deciding a player's value that season
+(either overvalued or undervalued). It produced results that reflected narratives from that season
+
+Examples:
+- In Shawn Kemp's final season he took 50% of the teams cap and average under 10 points (overvalued)
+- Dikembe Mutombo was 39 years of age in 2005, averaged less than 5 points and took 40% of the teams' cap (overvalued)
+- Kemba Walker had the best season of his career in 2019 and earned himself a large contract afterwards as a result (undervalued)
+- Michael Jordan was 40 years old in 2003 and still putting up great numbers given his contract (undervalued)
+
+Observations:
+- Overvalued players were commonly ex-superstars that have passed their prime on a large contract
+- Undervalued players were players near the end of the current contract who were performing well in hopes of earning a larger pay day
+
+### Future Modifications:
+As mentioned previously, players secure contracts before the season begins and some contracts last for multiple years.
+They're paid based on their previous performance and what their teams need. 
+To better predict salary one should focus on previous years' performance while accounting for the duration of previous contracts
+
+
